@@ -1,61 +1,200 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>IPTV Subscription</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Premium IPTV</title>
+<style>
+html,body{
+  margin:0; padding:0;
+  width:100%; height:100%;
+  overflow:hidden;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:#fff;
+}
+#bg-video{
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+  filter:brightness(0.3) contrast(1.2);
+}
+.particles{
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
+  z-index:1; overflow:hidden;
+}
+.particle{
+  position:absolute;
+  background: rgba(255,255,255,0.2);
+  border-radius:50%;
+  animation:float 12s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) translateX(0);}
+  100%{transform:translateY(-10vh) translateX(50px);}
+}
+.container{
+  position:relative; z-index:10;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  height:100%; width:100%; max-width:600px; text-align:center;
+}
+h1{
+  font-size:2.4rem; margin-bottom:20px;
+  text-shadow:0 0 25px #00f2fe;
+}
+#plan-section, #payment-section, #confirmation{
+  background: rgba(255,255,255,0.05);
+  padding:25px; border-radius:25px; margin:15px 0;
+  box-shadow:0 10px 40px rgba(0,0,0,0.7);
+  width:90%; display:flex; flex-direction:column; align-items:center;
+  perspective:1000px; animation:fadeIn 0.5s ease forwards;
+}
+#plan-section label{
+  display:block; background: rgba(255,255,255,0.1);
+  padding:20px; border-radius:20px; margin:12px 0; cursor:pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+#plan-section label:hover{
+  transform: rotateY(20deg) rotateX(10deg) scale(1.08);
+  box-shadow:0 20px 40px rgba(0,255,200,0.6);
+}
+input[type="radio"]{margin-right:10px; accent-color:#00f2fe;}
+#price-display{
+  margin-top:10px;
+  font-size:1.2rem;
+  font-weight:bold;
+  color:#00ffea;
+  text-shadow:0 0 10px #00ffea;
+}
+#payment-section img{
+  width:220px; border-radius:15px; box-shadow:0 8px 40px rgba(0,0,0,0.7);
+  margin:15px 0; transition: transform 0.4s ease;
+}
+#payment-section img:hover{transform: scale(1.1) rotateZ(-2deg);}
+button{
+  background: linear-gradient(45deg,#00f2fe,#00c6ff);
+  border:none; padding:16px 30px; border-radius:50px;
+  font-size:16px; font-weight:bold; cursor:pointer; color:#000;
+  margin-top:15px; box-shadow:0 0 25px rgba(0,255,255,0.7);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+button:hover{transform: scale(1.1) translateY(-3px); box-shadow:0 0 45px rgba(0,255,255,0.9);}
+#confirmation h2{color:#00ff95; text-shadow:0 0 25px #00ff95;}
+@keyframes fadeIn{from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);}}
+@media(max-width:480px){h1{font-size:1.6rem;} button{width:100%;} #plan-section label{padding:15px;}}
+.confetti-piece{
+  position:fixed; width:8px; height:8px;
+  background:linear-gradient(45deg,#00f2fe,#00c6ff);
+  top:0; left:0; opacity:0.9;
+  pointer-events:none; z-index:20;
+  animation:confetti-fall 3s linear forwards;
+}
+@keyframes confetti-fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
+}
+</style>
 </head>
 <body>
 
+<video id="bg-video" autoplay muted loop>
+  <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+</video>
+
+<div class="particles" id="particles"></div>
+
 <div class="container">
-  <h1>📺 IPTV Subscription</h1>
-  <p>HD | SD | Android | Smart TV</p>
+<h1>IPTV Subscription</h1>
 
-  <form onsubmit="sendWhatsApp(); return false;">
-    
-    <label>📦 Select Plan</label>
-    <select id="plan" required>
-      <option value="">-- Choose Plan --</option>
-      <option>1 Month - ₹200</option>
-      <option>3 Months - ₹600</option>
-      <option>6 Months - ₹1000</option>
-      <option>12 Months - ₹1999</option>
-    </select>
-
-    <label>📱 Device</label>
-    <select id="device" required>
-      <option value="">-- Choose Device --</option>
-      <option>Android Mobile</option>
-      <option>Android TV</option>
-      <option>Smart TV</option>
-      <option>Firestick</option>
-    </select>
-
-    <label>👤 Your Name</label>
-    <input type="text" id="name" placeholder="Enter your name" required>
-
-    <button type="submit">📲 Order on WhatsApp</button>
-  </form>
-
-  <p class="note">
-    💳 Payment করার পরে WhatsApp-এ Screenshot পাঠান
-  </p>
+<div id="plan-section" class="fadeIn">
+  <label><input type="radio" name="plan" value="1 Month - ₹200">1 Month - ₹200</label>
+  <label><input type="radio" name="plan" value="3 Months - ₹600">3 Months - ₹600</label>
+  <label><input type="radio" name="plan" value="6 Months - ₹1000">6 Months - ₹1000</label>
+  <label><input type="radio" name="plan" value="12 Months - ₹1900">12 Months - ₹1900</label>
+  <div id="price-display">Selected Price: ₹0</div>
 </div>
 
-<script src="script.js"></script>
-</body>
-</html>
-<!-- Payment Section -->
-<div id="payment-section">
+<div id="payment-section" class="fadeIn" style="display:none;">
   <h2>Pay via UPI</h2>
-  <img src="upi-qr.png" alt="UPI QR" width="200">
-  <p>Scan QR & pay the amount. After payment, click below:</p>
+  <img src="upi-qr.png" alt="UPI QR">
+  <p>Scan the QR and pay the selected amount.</p>
   <button id="paid-btn">I Have Paid</button>
 </div>
 
-<!-- Confirmation Screen -->
-<div id="confirmation" style="display:none;">
+<div id="confirmation" class="fadeIn" style="display:none;">
   <h2>Payment Confirmed ✅</h2>
-  <p>Thank you for subscribing! You can now access IPTV.</p>
+  <p>Click below to send order on WhatsApp:</p>
+  <a id="whatsapp-link" href="" target="_blank">
+    <button>Send Order on WhatsApp</button>
+  </a>
 </div>
+</div>
+
+<audio id="hover-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<script>
+const plans=document.getElementsByName("plan");
+const paymentSection=document.getElementById("payment-section");
+const paidBtn=document.getElementById("paid-btn");
+const confirmation=document.getElementById("confirmation");
+const whatsappLink=document.getElementById("whatsapp-link");
+const hoverSound=document.getElementById("hover-sound");
+const priceDisplay=document.getElementById("price-display");
+let selectedPlan="";
+let selectedPrice=0;
+
+// Plan hover sound
+Array.from(plans).forEach(plan=>{
+  plan.parentElement.addEventListener("mouseenter",()=>{hoverSound.play();});
+});
+
+// Plan select → update price + auto payment
+Array.from(plans).forEach(plan=>{
+  plan.addEventListener("change",()=>{
+    selectedPlan=plan.value;
+    const priceMatch=plan.value.match(/₹(\d+)/);
+    selectedPrice=priceMatch ? parseInt(priceMatch[1]) : 0;
+    priceDisplay.textContent=`Selected Price: ₹${selectedPrice}`;
+    paymentSection.style.display="block";
+    setTimeout(()=>{paidBtn.click()},500);
+  });
+});
+
+// Paid → WhatsApp + confetti
+paidBtn.addEventListener("click",()=>{
+  paymentSection.style.display="none";
+  confirmation.style.display="block";
+  const number="916289033804";
+  const message=`Hello! I have paid ₹${selectedPrice} for the IPTV plan: ${selectedPlan}`;
+  whatsappLink.href=`https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappLink.href,"_blank");
+  // Confetti
+  for(let i=0;i<50;i++){
+    const c=document.createElement("div");
+    c.classList.add("confetti-piece");
+    c.style.left=Math.random()*100+"%";
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+});
+
+// Floating particles
+const particlesContainer=document.getElementById("particles");
+for(let i=0;i<50;i++){
+  const p=document.createElement("div");
+  p.classList.add("particle");
+  const size=Math.random()*6+4;
+  p.style.width=size+"px"; p.style.height=size+"px";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=10+Math.random()*10+"s";
+  p.style.opacity=Math.random();
+  particlesContainer.appendChild(p);
+}
+</script>
+
+</body>
+</html>
 
