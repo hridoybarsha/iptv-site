@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive Premium IPTV</title>
+<title>LiveTV & OTT IPTV</title>
 <style>
 html,body{
   margin:0; padding:0;
@@ -36,55 +36,70 @@ html,body{
 }
 .container{
   position:relative; z-index:10;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
   height:100%; width:100%; max-width:600px; text-align:center;
+  padding-top:15px;
 }
 h1{
-  font-size:2.4rem; margin-bottom:20px;
-  text-shadow:0 0 25px #00f2fe;
+  font-size:1.6rem; margin-bottom:10px;
+  text-shadow:0 0 20px #00f2fe;
+}
+p.intro{
+  font-size:0.9rem;
+  color:#00ffea;
+  text-shadow:0 0 6px #00ffea;
+  line-height:1.3em;
+  max-width:500px;
+  margin:auto 0 15px 0;
 }
 #plan-section, #payment-section, #confirmation{
   background: rgba(255,255,255,0.05);
-  padding:25px; border-radius:25px; margin:15px 0;
-  box-shadow:0 10px 40px rgba(0,0,0,0.7);
+  padding:15px; border-radius:20px; margin:10px 0;
+  box-shadow:0 8px 30px rgba(0,0,0,0.7);
   width:90%; display:flex; flex-direction:column; align-items:center;
   perspective:1000px; animation:fadeIn 0.5s ease forwards;
 }
 #plan-section label{
   display:block; background: rgba(255,255,255,0.1);
-  padding:20px; border-radius:20px; margin:12px 0; cursor:pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  padding:12px; border-radius:15px; margin:8px 0; cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size:0.95rem;
 }
 #plan-section label:hover{
-  transform: rotateY(20deg) rotateX(10deg) scale(1.08);
-  box-shadow:0 20px 40px rgba(0,255,200,0.6);
+  transform: rotateY(15deg) rotateX(8deg) scale(1.05);
+  box-shadow:0 15px 30px rgba(0,255,200,0.5);
 }
-input[type="radio"]{margin-right:10px; accent-color:#00f2fe;}
+input[type="radio"]{margin-right:8px; accent-color:#00f2fe;}
 #price-display{
-  margin-top:10px;
-  font-size:1.2rem;
+  margin-top:8px;
+  font-size:1rem;
   font-weight:bold;
   color:#00ffea;
-  text-shadow:0 0 10px #00ffea;
+  text-shadow:0 0 8px #00ffea;
 }
 #payment-section img{
-  width:220px; border-radius:15px; box-shadow:0 8px 40px rgba(0,0,0,0.7);
-  margin:15px 0; transition: transform 0.4s ease;
+  width:180px; border-radius:12px; box-shadow:0 6px 30px rgba(0,0,0,0.7);
+  margin:12px 0; transition: transform 0.3s ease;
 }
-#payment-section img:hover{transform: scale(1.1) rotateZ(-2deg);}
+#payment-section img:hover{transform: scale(1.05) rotateZ(-1deg);}
 button{
   background: linear-gradient(45deg,#00f2fe,#00c6ff);
-  border:none; padding:16px 30px; border-radius:50px;
-  font-size:16px; font-weight:bold; cursor:pointer; color:#000;
-  margin-top:15px; box-shadow:0 0 25px rgba(0,255,255,0.7);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border:none; padding:12px 25px; border-radius:40px;
+  font-size:14px; font-weight:bold; cursor:pointer; color:#000;
+  margin-top:10px; box-shadow:0 0 20px rgba(0,255,255,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-button:hover{transform: scale(1.1) translateY(-3px); box-shadow:0 0 45px rgba(0,255,255,0.9);}
-#confirmation h2{color:#00ff95; text-shadow:0 0 25px #00ff95;}
-@keyframes fadeIn{from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);}}
-@media(max-width:480px){h1{font-size:1.6rem;} button{width:100%;} #plan-section label{padding:15px;}}
+button:hover{transform: scale(1.05) translateY(-2px); box-shadow:0 0 35px rgba(0,255,255,0.8);}
+#confirmation h2{color:#00ff95; text-shadow:0 0 20px #00ff95;}
+@keyframes fadeIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+@media(max-width:480px){
+  h1{font-size:1.3rem;}
+  p.intro{font-size:0.85rem;}
+  button{width:100%;}
+  #plan-section label{padding:10px; font-size:0.9rem;}
+}
 .confetti-piece{
-  position:fixed; width:8px; height:8px;
+  position:fixed; width:6px; height:6px;
   background:linear-gradient(45deg,#00f2fe,#00c6ff);
   top:0; left:0; opacity:0.9;
   pointer-events:none; z-index:20;
@@ -105,7 +120,20 @@ button:hover{transform: scale(1.1) translateY(-3px); box-shadow:0 0 45px rgba(0,
 <div class="particles" id="particles"></div>
 
 <div class="container">
-<h1>IPTV Subscription</h1>
+<h1>✨ Welcome to <strong>LiveTV & OTT Premium Service</strong> ✨</h1>
+<p class="intro">
+🎬 Watch:<br>
+• Live TV (All Indian & International Channels)<br>
+• Web Series & Movies (All OTT Platforms)<br>
+• Live Sports (IPL / Cricket / Football)<br><br>
+📺 Supports: Mobile | Smart TV | Android Box<br>
+💰 Subscription:<br>
+• 1 Month: ₹200<br>
+• 3 Months: ₹600<br>
+• 6 Months: ₹1000<br><br>
+📞 Activation / Recharge / Trial: +91 62890 33804<br>
+⚡ Fast Server | HD Quality | Zero Buffer | 24/7 Support
+</p>
 
 <div id="plan-section" class="fadeIn">
   <label><input type="radio" name="plan" value="1 Month - ₹200">1 Month - ₹200</label>
@@ -149,14 +177,14 @@ Array.from(plans).forEach(plan=>{
   plan.parentElement.addEventListener("mouseenter",()=>{hoverSound.play();});
 });
 
-// Plan select → update price only, payment section থাকবে সবসময়
+// Plan select → update price only
 Array.from(plans).forEach(plan=>{
   plan.addEventListener("change",()=>{
     selectedPlan = plan.value;
     const priceMatch = plan.value.match(/₹(\d+)/);
     selectedPrice = priceMatch ? parseInt(priceMatch[1]) : 0;
     priceDisplay.textContent = `Selected Price: ₹${selectedPrice}`;
-    paymentSection.style.display = "block"; // section always visible
+    paymentSection.style.display = "block";
   });
 });
 
