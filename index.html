@@ -3,146 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiveTV & OTT IPTV</title>
+<title>LiveTV & OTT Premium Service</title>
+
 <style>
 html,body{
-  margin:0; padding:0;
-  width:100%; min-height:100%;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  font-family:Arial, sans-serif;
+  background:#000;
   color:#fff;
-  overflow-x:hidden;
 }
+
+/* Background */
 #bg-video{
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
   object-fit:cover;
-  z-index:0;
-  filter:brightness(0.3) contrast(1.2);
+  filter:brightness(0.35);
+  z-index:-1;
 }
-.particles{
-  position:absolute; top:0; left:0;
-  width:100%; height:100%;
-  z-index:1; overflow:hidden;
-}
-.particle{
-  position:absolute;
-  background: rgba(255,255,255,0.2);
-  border-radius:50%;
-  animation:float 12s linear infinite;
-}
-@keyframes float{
-  0%{transform:translateY(100vh) translateX(0);}
-  100%{transform:translateY(-10vh) translateX(50px);}
-}
+
+/* Container */
 .container{
-  position:relative; z-index:10;
-  display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
-  width:95%; max-width:600px; margin:auto;
+  max-width:420px;
+  margin:auto;
+  padding:15px;
+}
+
+/* Header */
+.header{
   text-align:center;
-  padding:20px 10px;
-}
-h1{
-  font-size:1.8rem; margin-bottom:12px;
-  text-shadow:0 0 20px #00f2fe;
-}
-p.intro{
-  font-size:0.9rem;
-  color:#00ffea;
-  text-shadow:0 0 6px #00ffea;
-  line-height:1.4em;
   margin-bottom:15px;
 }
-#plan-section, #payment-section, #confirmation{
-  background: rgba(255,255,255,0.05);
-  padding:15px; border-radius:20px; margin:10px 0;
-  box-shadow:0 8px 30px rgba(0,0,0,0.7);
-  width:100%; display:flex; flex-direction:column; align-items:center;
+.header h1{
+  font-size:1.3rem;
+  color:#00f2fe;
+  text-shadow:0 0 15px #00f2fe;
 }
-#plan-section label{
-  display:block; background: rgba(255,255,255,0.1);
-  padding:12px; border-radius:15px; margin:8px 0; cursor:pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-size:0.95rem;
+.header p{
+  font-size:0.9rem;
+  line-height:1.4em;
 }
-#plan-section label:hover{
-  transform: rotateY(10deg) rotateX(5deg) scale(1.05);
-  box-shadow:0 12px 25px rgba(0,255,200,0.5);
+
+/* Box */
+.box{
+  background:rgba(255,255,255,0.07);
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:12px;
 }
-input[type="radio"]{margin-right:8px; accent-color:#00f2fe;}
+
+/* Plans */
+label{
+  display:block;
+  padding:10px;
+  margin:6px 0;
+  background:rgba(255,255,255,0.1);
+  border-radius:12px;
+  cursor:pointer;
+}
+input[type=radio]{
+  margin-right:8px;
+  accent-color:#00f2fe;
+}
+
 #price-display{
-  margin-top:8px;
-  font-size:1rem;
-  font-weight:bold;
+  margin-top:6px;
   color:#00ffea;
-  text-shadow:0 0 8px #00ffea;
+  font-weight:bold;
 }
-#payment-section img{
-  width:160px; border-radius:12px; box-shadow:0 6px 30px rgba(0,0,0,0.7);
-  margin:12px 0; transition: transform 0.3s ease;
+
+/* Inputs */
+input[type=text],input[type=password]{
+  width:100%;
+  padding:9px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+  font-size:14px;
 }
-#payment-section img:hover{transform: scale(1.05) rotateZ(-1deg);}
+
+/* Button */
 button{
-  background: linear-gradient(45deg,#00f2fe,#00c6ff);
-  border:none; padding:12px 25px; border-radius:40px;
-  font-size:14px; font-weight:bold; cursor:pointer; color:#000;
-  margin-top:10px; box-shadow:0 0 20px rgba(0,255,255,0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-button:hover{transform: scale(1.05) translateY(-2px); box-shadow:0 0 35px rgba(0,255,255,0.8);}
-#confirmation h2{color:#00ff95; text-shadow:0 0 20px #00ff95;}
-.confetti-piece{
-  position:fixed; width:6px; height:6px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:30px;
   background:linear-gradient(45deg,#00f2fe,#00c6ff);
-  top:0; left:0; opacity:0.9;
-  pointer-events:none; z-index:20;
-  animation:confetti-fall 3s linear forwards;
+  font-weight:bold;
+  margin-top:8px;
+  cursor:pointer;
 }
-@keyframes confetti-fall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(100vh) rotate(360deg);}
-}
-/* Responsive adjustments */
-@media(max-width:768px){
-  h1{font-size:1.5rem;}
-  p.intro{font-size:0.85rem;}
-  #plan-section label{font-size:0.9rem; padding:10px;}
-  #payment-section img{width:140px;}
-  button{font-size:13px; padding:10px 20px;}
-}
-@media(max-width:480px){
-  h1{font-size:1.3rem;}
-  p.intro{font-size:0.8rem;}
-  #plan-section label{font-size:0.85rem; padding:8px;}
-  #payment-section img{width:120px;}
-  button{font-size:12px; padding:8px 16px;}
+button:hover{opacity:0.9}
+
+/* QR */
+.qr{
+  width:180px;
+  margin:10px auto;
+  display:block;
+  border-radius:12px;
 }
 </style>
 </head>
+
 <body>
 
 <video id="bg-video" autoplay muted loop>
   <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
 </video>
 
-<div class="particles" id="particles"></div>
-
 <div class="container">
-<h1>✨ Welcome to <strong>LiveTV & OTT Premium Service</strong> ✨</h1>
-<p class="intro">
-🎬 Watch:<br>
-• Live TV (All Indian & International Channels)<br>
-• Web Series & Movies (All OTT Platforms)<br>
-• Live Sports (IPL / Cricket / Football)<br><br>
-📺 Supports: Mobile | Smart TV | Android Box<br>
-💰 Subscription:<br>
-• 1 Month: ₹200<br>
-• 3 Months: ₹600<br>
-• 6 Months: ₹1000<br><br>
-📞 Activation / Recharge / Trial: +91 62890 33804<br>
-⚡ Fast Server | HD Quality | Zero Buffer | 24/7 Support
-</p>
 
-<div id="plan-section">
+<!-- Header -->
+<div class="header">
+  <h1>✨ LiveTV & OTT Premium Service ✨</h1>
+  <p>
+    🎬 Live TV • OTT • Sports<br>
+    📺 Mobile | Smart TV | Android Box<br>
+    ⚡ HD Quality | Zero Buffer
+  </p>
+</div>
+
+<!-- Plans -->
+<div class="box">
+  <h3>Select Plan</h3>
   <label><input type="radio" name="plan" value="1 Month - ₹200">1 Month - ₹200</label>
   <label><input type="radio" name="plan" value="3 Months - ₹600">3 Months - ₹600</label>
   <label><input type="radio" name="plan" value="6 Months - ₹1000">6 Months - ₹1000</label>
@@ -150,81 +138,62 @@ button:hover{transform: scale(1.05) translateY(-2px); box-shadow:0 0 35px rgba(0
   <div id="price-display">Selected Price: ₹0</div>
 </div>
 
-<div id="payment-section">
-  <h2>Pay via UPI</h2>
-  <img src="upi-qr.png" alt="UPI QR">
-  <p>Scan the QR and pay the selected amount.</p>
-  <button id="paid-btn">I Have Paid</button>
+<!-- Payment -->
+<div class="box">
+  <h3>UPI Payment</h3>
+  <img src="upi-qr.png" class="qr">
+  <p style="text-align:center;font-size:0.85rem;">Scan & Pay</p>
 </div>
 
-<div id="confirmation" style="display:none;">
-  <h2>Payment Confirmed ✅</h2>
-  <p>Click below to send order on WhatsApp:</p>
-  <a id="whatsapp-link" href="" target="_blank">
-    <button>Send Order on WhatsApp</button>
-  </a>
-</div>
+<!-- Account Details -->
+<div class="box">
+  <h3>Account Details</h3>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <input type="text" id="server" value="http://4xiptv.me:8880">
+  <button id="send">Send on WhatsApp</button>
 </div>
 
-<audio id="hover-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+</div>
 
 <script>
-const plans=document.getElementsByName("plan");
-const paymentSection=document.getElementById("payment-section");
-const paidBtn=document.getElementById("paid-btn");
-const confirmation=document.getElementById("confirmation");
-const whatsappLink=document.getElementById("whatsapp-link");
-const hoverSound=document.getElementById("hover-sound");
-const priceDisplay=document.getElementById("price-display");
 let selectedPlan="";
 let selectedPrice=0;
 
-// Hover sound
-Array.from(plans).forEach(plan=>{
-  plan.parentElement.addEventListener("mouseenter",()=>{hoverSound.play();});
-});
-
-// Plan select → update price
-Array.from(plans).forEach(plan=>{
-  plan.addEventListener("change",()=>{
-    selectedPlan = plan.value;
-    const priceMatch = plan.value.match(/₹(\d+)/);
-    selectedPrice = priceMatch ? parseInt(priceMatch[1]) : 0;
-    priceDisplay.textContent = `Selected Price: ₹${selectedPrice}`;
+document.querySelectorAll("input[name=plan]").forEach(p=>{
+  p.addEventListener("change",()=>{
+    selectedPlan=p.value;
+    const m=p.value.match(/₹(\d+)/);
+    selectedPrice=m?m[1]:0;
+    document.getElementById("price-display").innerText=
+      "Selected Price: ₹"+selectedPrice;
   });
 });
 
-// Paid → WhatsApp + confetti
-paidBtn.addEventListener("click",()=>{
-  confirmation.style.display="block";
-  const number="916289033804";
-  const message=`Hello! I have paid ₹${selectedPrice} for the IPTV plan: ${selectedPlan}`;
-  whatsappLink.href=`https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-  window.open(whatsappLink.href,"_blank");
+document.getElementById("send").addEventListener("click",()=>{
+  const u=document.getElementById("username").value;
+  const pw=document.getElementById("password").value;
+  const s=document.getElementById("server").value;
 
-  for(let i=0;i<50;i++){
-    const c=document.createElement("div");
-    c.classList.add("confetti-piece");
-    c.style.left=Math.random()*100+"%";
-    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration=(2+Math.random()*2)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
+  if(!u||!pw||!selectedPlan){
+    alert("সব তথ্য পূরণ করুন");
+    return;
   }
-});
 
-// Floating particles
-const particlesContainer=document.getElementById("particles");
-for(let i=0;i<50;i++){
-  const p=document.createElement("div");
-  p.classList.add("particle");
-  const size=Math.random()*6+4;
-  p.style.width=size+"px"; p.style.height=size+"px";
-  p.style.left=Math.random()*100+"%";
-  p.style.animationDuration=10+Math.random()*10+"s";
-  p.style.opacity=Math.random();
-  particlesContainer.appendChild(p);
-}
+  const number="916289033804";
+  const msg=`IPTV Order
+-------------
+Plan: ${selectedPlan}
+Amount: ₹${selectedPrice}
+Username: ${u}
+Password: ${pw}
+Server: ${s}`;
+
+  window.open(
+    "https://wa.me/"+number+"?text="+encodeURIComponent(msg),
+    "_blank"
+  );
+});
 </script>
 
 </body>
