@@ -14,4 +14,9 @@ function sendWhatsApp() {
 
   var url = "https://wa.me/" + phone + "?text=" + message;
   window.open(url, "_blank");
+
 }
+document.getElementById("paid-btn").addEventListener("click", function() {
+    document.getElementById("payment-section").style.display = "none";
+    document.getElementById("confirmation").style.display = "block";
+});
