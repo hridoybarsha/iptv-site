@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>IPTV Subscription</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1> IPTV Subscription</h1>
+  <p>HD | SD | Android | Smart TV</p>
+
+  <form onsubmit="sendWhatsApp(); return false;">
+    
+    <label> Select Plan</label>
+    <select id="plan" required>
+      <option value="">-- Choose Plan --</option>
+      <option>1 Month - 299</option>
+      <option>3 Months - 799</option>
+      <option>6 Months - 1299</option>
+      <option>12 Months - 1999</option>
+    </select>
+
+    <label> Device</label>
+    <select id="device" required>
+      <option value="">-- Choose Device --</option>
+      <option>Android Mobile</option>
+      <option>Android TV</option>
+      <option>Smart TV</option>
+      <option>Firestick</option>
+    </select>
+
+    <label> Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <button type="submit"> Order on WhatsApp</button>
+  </form>
+
+  <p class="note">
+     Payment   WhatsApp- Screenshot 
+  </p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
