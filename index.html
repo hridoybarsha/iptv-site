@@ -115,7 +115,7 @@ button:hover{transform: scale(1.1) translateY(-3px); box-shadow:0 0 45px rgba(0,
   <div id="price-display">Selected Price: ₹0</div>
 </div>
 
-<div id="payment-section" class="fadeIn" style="display:none;">
+<div id="payment-section" class="fadeIn">
   <h2>Pay via UPI</h2>
   <img src="upi-qr.png" alt="UPI QR">
   <p>Scan the QR and pay the selected amount.</p>
@@ -149,27 +149,26 @@ Array.from(plans).forEach(plan=>{
   plan.parentElement.addEventListener("mouseenter",()=>{hoverSound.play();});
 });
 
-// Plan select → update price + auto payment
+// Plan select → update price only, payment section থাকবে সবসময়
 Array.from(plans).forEach(plan=>{
   plan.addEventListener("change",()=>{
-    selectedPlan=plan.value;
-    const priceMatch=plan.value.match(/₹(\d+)/);
-    selectedPrice=priceMatch ? parseInt(priceMatch[1]) : 0;
-    priceDisplay.textContent=`Selected Price: ₹${selectedPrice}`;
-    paymentSection.style.display="block";
-    setTimeout(()=>{paidBtn.click()},500);
+    selectedPlan = plan.value;
+    const priceMatch = plan.value.match(/₹(\d+)/);
+    selectedPrice = priceMatch ? parseInt(priceMatch[1]) : 0;
+    priceDisplay.textContent = `Selected Price: ₹${selectedPrice}`;
+    paymentSection.style.display = "block"; // section always visible
   });
 });
 
 // Paid → WhatsApp + confetti
 paidBtn.addEventListener("click",()=>{
-  paymentSection.style.display="none";
   confirmation.style.display="block";
   const number="916289033804";
   const message=`Hello! I have paid ₹${selectedPrice} for the IPTV plan: ${selectedPlan}`;
   whatsappLink.href=`https://wa.me/${number}?text=${encodeURIComponent(message)}`;
   window.open(whatsappLink.href,"_blank");
-  // Confetti
+
+  // Confetti animation
   for(let i=0;i<50;i++){
     const c=document.createElement("div");
     c.classList.add("confetti-piece");
@@ -197,4 +196,3 @@ for(let i=0;i<50;i++){
 
 </body>
 </html>
-
