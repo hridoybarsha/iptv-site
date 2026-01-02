@@ -1,48 +1,102 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>IPTV Subscription</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV Subscription</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1b1b2f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  h1 {
+    color: #4ecdc4;
+  }
+  select, button {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+  }
+  select {
+    background: #333;
+    color: #fff;
+  }
+  button {
+    background: #4ecdc4;
+    color: #000;
+    cursor: pointer;
+  }
+  .paid-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .upi-code {
+    margin-top: 10px;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  .download-btn {
+    margin-top: 20px;
+    background: #1e90ff;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-  <h1> IPTV Subscription</h1>
-  <p>HD | SD | Android | Smart TV</p>
+<h1>IPTV Subscription</h1>
 
-  <form onsubmit="sendWhatsApp(); return false;">
-    
-    <label> Select Plan</label>
-    <select id="plan" required>
-      <option value="">-- Choose Plan --</option>
-      <option>1 Month - 200</option>
-      <option>3 Months - 600</option>
-      <option>6 Months - 1000</option>
-      <option>12 Months - 2000</option>
-    </select>
+<label for="plan">Choose Plan:</label>
+<select id="plan">
+  <option value="">-- Select --</option>
+  <option value="299">1 Month - ₹299</option>
+  <option value="799">3 Months - ₹799</option>
+  <option value="1299">6 Months - ₹1299</option>
+  <option value="1999">12 Months - ₹1999</option>
+</select>
 
-    <label> Device</label>
-    <select id="device" required>
-      <option value="">-- Choose Device --</option>
-      <option>Android Mobile</option>
-      <option>Android TV</option>
-      <option>Smart TV</option>
-      <option>Firestick</option>
-    </select>
+<button onclick="pay()">Pay with UPI</button>
 
-    <label> Your Name</label>
-    <input type="text" id="name" placeholder="Enter your name" required>
-
-    <button type="submit"> Order on WhatsApp</button>
-  </form>
-
-  <p class="note">
-     Payment   WhatsApp- Screenshot 
-  </p>
+<div class="paid-screen" id="paidScreen">
+  <h2>Payment Successful!</h2>
+  <p>আপনার সাবস্ক্রিপশন অ্যাক্টিভ।</p>
+  <div class="upi-code">
+    UPI ID: example@upi
+  </div>
+  <button class="download-btn" onclick="downloadZip()">Download IPTV Site ZIP</button>
 </div>
 
-<script src="script.js"></script>
-</body>
+<script>
+function pay() {
+  let plan = document.getElementById('plan').value;
+  if (!plan) {
+    alert("দয়া করে একটি প্ল্যান সিলেক্ট করুন");
+    return;
+  }
+  // এখানে তুমি পেমেন্ট গেটওয়ে কাস্টমাইজ করতে পারো
+  alert("আপনি ₹" + plan + " পেমেন্ট করবেন। (Demo Only)");
+  document.getElementById('paidScreen').style.display = 'flex';
+}
 
+function downloadZip() {
+  // এখানে তুমি নিজের ZIP ফাইলের লিংক বসাবে
+  window.location.href = "https://example.com/iptv-site.zip";
+}
+</script>
+
+</body>
 </html>
+
